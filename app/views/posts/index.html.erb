@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-8">
+    <% @posts.each do |post| %>
+      <div class="article">
+        <h2>タイトル：<%= post.title %></h2>
+        <p>カテゴリ：<%= post.category %></p>
+        <p>作成日：<%= post.created_at %></p>
+        <p><%= truncate(post.body, length: 50) %></p>
+        <p><%= link_to "続きを読む", post, class: "btn btn-info" %></p>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <%= image_tag @author.image_url, class: "card-img-top", alt: "著者イメージ" %>
+      <div class="card-body">
+        <h3>著者名：<%= @author.name %></h3>
+        <p>詳細：<%= @author.description %></p>
+      </div>
+    </div>
+    <div class="list-group">
+      <!-- 5件だけ記事を表示するように制御します -->
+      <% @new_posts.each do |post| %>
+        <%= link_to post.title, post, class: "list-group-item" %>
+      <% end %>
+    </div>
+  </div>
+</div>
